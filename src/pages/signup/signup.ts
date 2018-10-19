@@ -35,7 +35,7 @@ export class SignupPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
-  }
+  }  
 
   signup() {
     if (!this.form.valid) {

@@ -18,17 +18,14 @@ export class GlobalProvider {
       subTitle: text,
       buttons: ['OK']
     });
-
     alert.present();
   }
 
   showLoading() {
-
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...',
       dismissOnPageChange: true
     });
-
     this.loading.present();
   }
 

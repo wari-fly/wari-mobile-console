@@ -1,5 +1,7 @@
 {
   "name": "wari-mobile-console",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
   }
 
   google() {
-
+    this.navCtrl.setRoot(MenuPage)
   }
   signup() {
     this.navCtrl.push(SignupPage)
