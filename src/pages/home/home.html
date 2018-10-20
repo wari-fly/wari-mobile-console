@@ -3,18 +3,30 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Cultura Wari</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only  (click)="location()">
+          <ion-icon name="locate"></ion-icon>
+        </button>
+        <button ion-button icon-only (click)="profile()">
+          <ion-icon name="person-add"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-card *ngFor="let site of sites">
     <img height="182" src="{{site.imagen}}" />
     <ion-fab right top>
-        <button ion-fab (click)="details(site)"  color="danger"> 
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-fab>
+      <button ion-fab (click)="details(site)" color="danger">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
     <ion-card-content>
       <ion-card-title>
         {{site.nombre}}
@@ -32,9 +44,11 @@
       <ion-icon name='git-network' item-start style="color: #53b69d"></ion-icon>
       Ubicacion
       <ion-badge color="danger" item-end>{{site.ubicacion}}</ion-badge>
-    </ion-item>  
+    </ion-item>
   </ion-card>
   <ion-fab right bottom>
-      <button ion-fab color="danger" (click)="finding()"><ion-icon name="pin"></ion-icon></button>    
-    </ion-fab>
+    <button ion-fab color="danger" (click)="finding()">
+      <ion-icon name="pin"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

@@ -5,14 +5,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { firebaseConfig } from '../config/credentials';
 
 import { DataService } from '../providers/data/data.service';
@@ -25,10 +23,12 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { SignupPageModule } from '../pages/signup/signup.module';
 import { MenuPageModule } from '../pages/menu/menu.module';
 import { TrackerPageModule } from '../pages/tracker/tracker.module';
+import { ProfilePageModule } from '../pages/profile/profile.module';
+import { LocationPageModule } from '../pages/location/location.module';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage    
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -39,6 +39,8 @@ import { TrackerPageModule } from '../pages/tracker/tracker.module';
     MenuPageModule,
     DetailPageModule,
     TrackerPageModule,
+    ProfilePageModule,
+    LocationPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

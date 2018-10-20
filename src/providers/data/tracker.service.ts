@@ -17,7 +17,7 @@ export class TrackerService {
                     returnArr.push(item);
                 });
                 resolve(returnArr);
-            })
+            }, err => reject(err))
         });
         return promise;
     }
@@ -32,10 +32,11 @@ export class TrackerService {
                     returnArr.push(item);
                 });
                 resolve(returnArr);
-            })
+            }, err => reject(err))
         });
         return promise;
     }
+    
     getTraking(latiude: number, longitude: number) {
         const error: number = 0.5;
         var promise = new Promise((resolve, reject) => {
@@ -47,8 +48,6 @@ export class TrackerService {
                     const coordenadas = item.coordenadas;
                     let flag = false;
                     coordenadas.forEach(d => {
-                        console.log(d.latitud);
-                        console.log(d.latitud - error);
                         if (((d.latitud - error) <= latiude && latiude <= (d.latitud + error)) && ((d.logitud - error) <= longitude && longitude <= (d.logitud + error))) {
                             flag = true;
                         }
@@ -58,7 +57,7 @@ export class TrackerService {
                     }
                 });
                 resolve(returnArr);
-            })
+            }, err => reject(err))
         });
         return promise;
     }
@@ -73,7 +72,7 @@ export class TrackerService {
                     returnArr.push(item);
                 });
                 resolve(returnArr[0]);
-            })
+            }, err => reject(err))
         });
         return promise;
     }

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, Refresher } from 'ionic-angular';
 import { DataService } from '../../providers/data/data.service';
 import { GlobalProvider } from '../../providers/global.provider';
 import { DetailPage } from '../detail/detail';
 import { Subscription } from 'rxjs';
 import { Geolocation } from '@ionic-native/geolocation';
-import { map } from 'rxjs/operators';
 
 @IonicPage()
 @Component({
@@ -29,15 +28,15 @@ export class TrackerPage implements OnInit {
 
   loadData() {
     this.geolocation.getCurrentPosition().then(pos => {
-      //this.global.showLoading();
+      this.global.showLoading();
       this.dataService.tracker().getTraking(pos.coords.latitude, pos.coords.longitude).then((res: any) => {
         this.sites = res;
-        //this.global.dismissLoading();
+        this.global.dismissLoading();
       }).catch(err => {
-        //this.global.showError("Error loaded Wari Proyects");
+        this.global.showError("Error loaded Wari Proyects");
       });
     }).catch((error) => {
-      console.log('Error getting location', error);
+      this.global.showError("Error loaded Wari Proyects");
     });
   }
 
@@ -48,18 +47,32 @@ export class TrackerPage implements OnInit {
   startTracking() {
     this.positionSubscription = this.geolocation.watchPosition()
       .subscribe((pos: any) => {
-        //this.global.showLoading();
+        this.global.showLoading();
         this.dataService.tracker().getTraking(pos.coords.latitude, pos.coords.longitude).then((res: any) => {
           this.sites = res;
-          //this.global.dismissLoading();
+          this.global.dismissLoading();
         }).catch(err => {
-          //this.global.showError("Error loaded Wari Proyects");
+          this.global.showError("Error loaded Wari Proyects");
         });
       });
   }
 
   stopTracking() {
     this.positionSubscription.unsubscribe();
+  }
+
+  doRefresh(refresher: Refresher) {
+    this.geolocation.getCurrentPosition().then(pos => {
+      this.dataService.tracker().getTraking(pos.coords.latitude, pos.coords.longitude).then((res: any) => {
+        this.sites = res;
+        refresher.complete();
+      }).catch(err => {
+        refresher.complete();
+      });
+    }).catch((error) => {
+      refresher.complete();
+      console.log('Error getting location', error);
+    });
   }
 
   details(site: any) {

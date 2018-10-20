@@ -1,37 +1,41 @@
 <ion-header>
-    <ion-navbar color="danger">
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+  <ion-navbar color="danger">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Ubicarme</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let site of sites">
+    <img height="182" src="{{site.imagen}}" />
+    <ion-fab right top>
+      <button ion-fab (click)="details(site)" color="danger">
+        <ion-icon name="add"></ion-icon>
       </button>
-      <ion-title>Ubicarme</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-    <ion-card *ngFor="let site of sites">
-      <img height="182" src="{{site.imagen}}" />
-      <ion-fab right top>
-          <button ion-fab (click)="details(site)"  color="danger"> 
-            <ion-icon name="add"></ion-icon>
-          </button>
-        </ion-fab>
-      <ion-card-content>
-        <ion-card-title>
-          {{site.nombre}}
-        </ion-card-title>
-        <p>
-          {{site.descripcion}}
-        </p>
-      </ion-card-content>
-      <ion-item>
-        <ion-icon name='compass' item-start style="color: #53b69d"></ion-icon>
-        Periodo
-        <ion-badge item-end color="danger">{{site.periodo}}</ion-badge>
-      </ion-item>
-      <ion-item>
-        <ion-icon name='git-network' item-start style="color: #53b69d"></ion-icon>
-        Ubicacion
-        <ion-badge color="danger" item-end>{{site.ubicacion}}</ion-badge>
-      </ion-item>  
-    </ion-card>
-  </ion-content>
+    </ion-fab>
+    <ion-card-content>
+      <ion-card-title>
+        {{site.nombre}}
+      </ion-card-title>
+      <p>
+        {{site.descripcion}}
+      </p>
+    </ion-card-content>
+    <ion-item>
+      <ion-icon name='compass' item-start style="color: #53b69d"></ion-icon>
+      Periodo
+      <ion-badge item-end color="danger">{{site.periodo}}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-icon name='git-network' item-start style="color: #53b69d"></ion-icon>
+      Ubicacion
+      <ion-badge color="danger" item-end>{{site.ubicacion}}</ion-badge>
+    </ion-item>
+  </ion-card>
+</ion-content>

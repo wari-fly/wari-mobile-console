@@ -24,6 +24,9 @@ export class LoginPage implements OnInit {
     this.initFormBuilder();
   }
 
+  ionViewDidLoad() {
+  }
+
   initFormBuilder() {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
@@ -37,17 +40,31 @@ export class LoginPage implements OnInit {
     }
     this.global.showLoading();
     this.dataService.auth().signIn(this.loginForm.value)
-      .then(
-        () => this.navCtrl.setRoot(MenuPage),
-        error => this.global.showError("Access Denied")
-      );
+      .then((res: any) => {
+        const d = res.user.providerData[0];
+        d.key = res.user.uid;
+        d.issueDate = new Date().toISOString();
+        this.saveSession(d);
+        this.navCtrl.setRoot(MenuPage);
+        this.global.dismissLoading();
+      }, error => {
+        this.global.showError("Access Denied");
+      }).catch(err => {
+        this.global.showError("Access Denied");
+      });
+  }
+
+  saveSession(data) {
+    this.dataService.auth().addSession(data)
+      .then(res => { }, err => console.error(err))
+      .catch(err => console.error(err));
   }
 
   google() {
-    this.navCtrl.setRoot(MenuPage)
-  }
-  signup() {
-    this.navCtrl.push(SignupPage)
+    this.navCtrl.setRoot(MenuPage);
   }
 
+  signup() {
+    this.navCtrl.push(SignupPage);
+  }
 }

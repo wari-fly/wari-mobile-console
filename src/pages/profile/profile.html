@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title>Perfil</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row class="logo-row">
+    <ion-col>
+      <ion-title align="center">
+        <img class="logo" src="assets/imgs/perfil.png" style="height: 180px;">
+      </ion-title>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-list inset>
+        <ion-item>
+          <ion-label floating>Apellidos</ion-label>
+          <ion-input type="text" disabled="true" [(ngModel)]="p.lastName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Nombres</ion-label>
+          <ion-input type="text" disabled="true" [(ngModel)]="p.firstName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Alias</ion-label>
+          <ion-input type="text" disabled="true" [(ngModel)]="p.displayName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Correo Electrónico</ion-label>
+          <ion-input type="text" disabled="true" [(ngModel)]="p.email"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <div padding-horizontal>
+    <button ion-button block color="danger" (click)="logout()">Cerrar Sesion</button>
+  </div>
+</ion-content>
