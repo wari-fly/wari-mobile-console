@@ -33,4 +33,13 @@ export class GlobalProvider {
     this.loading.dismiss();
   }
 
+  showMensaje(text) {
+    let alert = this.alertCtrl.create({
+      title: 'Mensaje',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
 }

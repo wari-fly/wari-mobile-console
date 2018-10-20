@@ -61,7 +61,7 @@ export class LoginPage implements OnInit {
   }
 
   google() {
-    this.navCtrl.setRoot(MenuPage);
+    this.global.showMensaje("Pronto estara disponible");
   }
 
   signup() {
