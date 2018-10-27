@@ -62,25 +62,8 @@ export class LoginPage implements OnInit {
   }
 
   google() {
-    this.global.showLoading();
-    if (this.platform.is('cordova')) {
+    if (this.platform.is('android') || this.platform.is("cordova")) {
       this.dataService.auth().nativeGoogleLogin()
-        .then(res => {         
-          const d = res.user.providerData[0];
-          this.dataService.auth().createUser(d);
-          d.key = res.user.uid;
-          d.issueDate = new Date().toISOString();
-          this.saveSession(d);
-          this.navCtrl.setRoot(MenuPage);
-          this.global.dismissLoading();
-        },
-          error => this.global.showError("Access Denied")
-        )
-        .catch(error => {
-          this.global.showError("Access Denied");
-        });
-    } else {
-      this.dataService.auth().webGoogleLogin()
         .then(res => {
           const d = res.user.providerData[0];
           this.dataService.auth().createUser(d);
@@ -88,14 +71,31 @@ export class LoginPage implements OnInit {
           d.issueDate = new Date().toISOString();
           this.saveSession(d);
           this.navCtrl.setRoot(MenuPage);
-          this.global.dismissLoading();
         },
-          error => this.global.showError("Access Denied")
+          error => this.global.showMensaje("Access Denied")
         )
         .catch(error => {
-          this.global.showError("Access Denied");
+          this.global.showMensaje("Access Denied");
         });
-    }
+    } else
+      if (this.platform.is('mobileweb')) {
+        this.dataService.auth().webGoogleLogin()
+          .then(res => {
+            const d = res.user.providerData[0];
+            this.dataService.auth().createUser(d);
+            d.key = res.user.uid;
+            d.issueDate = new Date().toISOString();
+            this.saveSession(d);
+            this.navCtrl.setRoot(MenuPage);
+          },
+            error => this.global.showMensaje("Access Denied")
+          )
+          .catch(error => {
+            this.global.showMensaje("Access Denied");
+          });
+      } else {
+        this.global.showMensaje("otra Tecnologia")
+      }
 
   }
 
