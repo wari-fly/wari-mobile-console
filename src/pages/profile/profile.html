@@ -7,7 +7,10 @@
 <ion-content padding>
   <ion-row class="logo-row">
     <ion-col>
-      <ion-title align="center">
+      <ion-title align="center" *ngIf="p.photoURL">
+        <img class="logo" src="{{p.photoURL}}">
+      </ion-title>
+      <ion-title align="center" *ngIf="!p.photoURL">
         <img class="logo" src="assets/imgs/perfil.png" style="height: 180px;">
       </ion-title>
     </ion-col>
@@ -15,11 +18,11 @@
   <ion-row>
     <ion-col>
       <ion-list inset>
-        <ion-item>
+        <ion-item *ngIf="p.lastName">
           <ion-label floating>Apellidos</ion-label>
           <ion-input type="text" disabled="true" [(ngModel)]="p.lastName"></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="p.firstName">
           <ion-label floating>Nombres</ion-label>
           <ion-input type="text" disabled="true" [(ngModel)]="p.firstName"></ion-input>
         </ion-item>

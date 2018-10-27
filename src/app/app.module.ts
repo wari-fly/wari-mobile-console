@@ -25,6 +25,8 @@ import { MenuPageModule } from '../pages/menu/menu.module';
 import { TrackerPageModule } from '../pages/tracker/tracker.module';
 import { ProfilePageModule } from '../pages/profile/profile.module';
 import { LocationPageModule } from '../pages/location/location.module';
+
+import { GooglePlus } from '@ionic-native/google-plus';
 @NgModule({
   declarations: [
     MyApp,
@@ -52,6 +54,7 @@ import { LocationPageModule } from '../pages/location/location.module';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AngularFireAuth,
+    GooglePlus,
     Geolocation,
     DataService,
     AuthService,

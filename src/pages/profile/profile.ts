@@ -29,6 +29,7 @@ export class ProfilePage {
   getInformation(email: any) {
     this.dataService.auth().getProfile(email)
       .then((res: any) => {
+        console.log(res)
         this.p = res;
       }, error => {
         console.log(error);

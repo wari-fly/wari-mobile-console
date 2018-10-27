@@ -1,6 +1,6 @@
 import { MenuPage } from './../menu/menu';
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, Platform } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from '../../providers/data/data.service';
 import { GlobalProvider } from '../../providers/global.provider';
@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private platform: Platform,
     private dataService: DataService,
     private formBuilder: FormBuilder,
     private global: GlobalProvider) { }
@@ -61,7 +62,41 @@ export class LoginPage implements OnInit {
   }
 
   google() {
-    this.global.showMensaje("Pronto estara disponible");
+    this.global.showLoading();
+    if (this.platform.is('cordova')) {
+      this.dataService.auth().nativeGoogleLogin()
+        .then(res => {         
+          const d = res.user.providerData[0];
+          this.dataService.auth().createUser(d);
+          d.key = res.user.uid;
+          d.issueDate = new Date().toISOString();
+          this.saveSession(d);
+          this.navCtrl.setRoot(MenuPage);
+          this.global.dismissLoading();
+        },
+          error => this.global.showError("Access Denied")
+        )
+        .catch(error => {
+          this.global.showError("Access Denied");
+        });
+    } else {
+      this.dataService.auth().webGoogleLogin()
+        .then(res => {
+          const d = res.user.providerData[0];
+          this.dataService.auth().createUser(d);
+          d.key = res.user.uid;
+          d.issueDate = new Date().toISOString();
+          this.saveSession(d);
+          this.navCtrl.setRoot(MenuPage);
+          this.global.dismissLoading();
+        },
+          error => this.global.showError("Access Denied")
+        )
+        .catch(error => {
+          this.global.showError("Access Denied");
+        });
+    }
+
   }
 
   signup() {

@@ -85,5 +85,9 @@
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To track your walks" />
     </plugin>
-    <engine name="android" spec="^4.1.0" />
+    <plugin name="cordova-plugin-googleplus" spec="^5.3.2">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.958166775358-8md4aqaht81u64jmq6tm5rrl1u0cckj9" />
+        <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
+    </plugin>
+    <engine name="android" spec="^5.1.0" />
 </widget>
