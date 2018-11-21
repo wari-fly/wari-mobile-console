@@ -1,10 +1,11 @@
 <ion-menu [content]="content">
-    <ion-header>
-        <ion-toolbar color="danger">
+    <ion-header no-border>       
+        <!-- <ion-toolbar color="danger">
             <ion-title>Menu</ion-title>
-        </ion-toolbar>
+        </ion-toolbar>        -->
     </ion-header>
     <ion-content>
+          <img src="assets/imgs/menu1.png" class="custom-avatar" />
         <ion-list>
             <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
                 <ion-icon name="{{p.icon}}"></ion-icon>
@@ -22,7 +23,7 @@
                     <button ion-button full clear icon-left (click)="logout()" color="danger">
                         <ion-icon name="sign-out">
                         </ion-icon>
-                        Logout
+                        SALIR
                     </button>
                 </ion-col>
             </ion-row>

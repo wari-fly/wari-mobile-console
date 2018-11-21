@@ -1,8 +1,8 @@
 {
   "name": "wari-mobile-console",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "version": "1.0.4",
+  "author": "Alex Pariona",
+  "homepage": "http://github.com/lxpary",
   "private": true,
   "scripts": {
     "start": "ionic-app-scripts serve",
@@ -27,6 +27,7 @@
     "@ionic-native/status-bar": "~4.15.0",
     "@ionic/storage": "2.2.0",
     "angularfire2": "^5.0.2",
+    "cordova-android": "^7.1.1",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-googleplus": "^5.3.2",
@@ -40,8 +41,7 @@
     "ionicons": "3.0.0",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.26",
-    "cordova-android": "~7.1.1"
+    "zone.js": "0.8.26"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.0",
