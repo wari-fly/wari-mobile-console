@@ -1,5 +1,5 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyBNDdQ2o1W2uI_QhOBacOXCtsRAK4Ku4rk",
+    apiKey: "AIzaSyBlg31r66nN3iwK_EoSh69eecNefcLHpu0",
     authDomain: "proyecto-wari.firebaseapp.com",
     databaseURL: "https://proyecto-wari.firebaseio.com",
     projectId: "proyecto-wari",

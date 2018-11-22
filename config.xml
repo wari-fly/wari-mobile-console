@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="edu.pe.unsch" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="edu.pe.unsch" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Wari</name>
     <description>Es un proyecto colaborativo para universidad nacional de san cristobal de huamanga.</description>
     <author email="lx7pary@gmail.com" href="http://www.github.com/lxpary">github page </author>
@@ -13,7 +13,6 @@
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
-    <preference name="android-targetSdkVersion" value="27" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
@@ -90,5 +89,5 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.958166775358-8md4aqaht81u64jmq6tm5rrl1u0cckj9" />
         <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
     </plugin>
-    <engine name="android" spec="^7.1.1" />
+    <engine name="android" spec="~7.1.3" />
 </widget>
