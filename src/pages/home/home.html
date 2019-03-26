@@ -5,13 +5,13 @@
     </button>
     <ion-title>Cultura Wari</ion-title>
     <ion-buttons end>
-        <button ion-button icon-only  (click)="location()">
-          <ion-icon name="locate"></ion-icon>
-        </button>
-        <button ion-button icon-only (click)="profile()">
-          <ion-icon name="person-add"></ion-icon>
-        </button>
-      </ion-buttons>
+      <button ion-button icon-only (click)="location()">
+        <ion-icon name="locate"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="profile()">
+        <ion-icon name="person-add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -21,12 +21,10 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-card *ngFor="let site of sites">
-    <img height="182" src="{{site.imagen}}" />
-    <ion-fab right top>
-      <button ion-fab (click)="details(site)" color="danger">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-fab>
+    <button id="notification-button" ion-fab (click)="details(site)" color="danger">
+      <ion-icon name="images"></ion-icon>
+    </button>
+    <img height="182" src="{{site.imagen}}" (click)="details(site)" />
     <ion-card-content>
       <ion-card-title>
         {{site.nombre}}
